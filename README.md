@@ -6,32 +6,6 @@ An authentication API gateway that models Substack's approach, using 2FA to auth
 
 
 ## Endpoints
-<style>
-    .dark-table {
-        background-color: #1a1a1a; 
-        color: #e0e0e0;           
-        border-collapse: collapse; 
-        width: 100%;
-    }
-
-    .dark-table th, 
-    .dark-table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #333;
-        border-left: 1px solid #333; 
-        border-right: 1px solid #333;    
-    }
-
-    .dark-table th {
-        background-color: #252525;
-        color: #ffffff;
-    }
-
-    .dark-table {
-        border: 1px solid #333;
-    }
-</style>
 
 <table class="dark-table">
     <thead>
