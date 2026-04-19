@@ -2,7 +2,10 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from django.contrib.auth import get_user_model
 
+
+User = get_user_model()
 
 class LoginAPIViewTestCase(APITestCase):
     def setUp(self):
@@ -23,7 +26,7 @@ class LoginAPIViewTestCase(APITestCase):
     def test_login_success(self):
         """Test that a user can login with valid credentials"""
         data = {
-            "username": self.username,
+            "email": self.email,
             "password": self.password,
         }
 
@@ -31,13 +34,13 @@ class LoginAPIViewTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["message"], "Login successful")
-        self.assertEqual(response.data["user"]["username"], self.username)
+        self.assertEqual(response.data["user"]["email"], self.email)
 
 
     def test_login_invalid_credentials(self):
         """Test that the login fails with a wrong password"""
         data = {
-            "username": self.username,
+            "email": self.email,
             "password": "123555",
         }
         response = self.client.post(self.url, data, format="json")
@@ -48,7 +51,7 @@ class LoginAPIViewTestCase(APITestCase):
 
     def test_login_missing_field(self):
         """Test that login fails if field are missing."""
-        data = {"username": self.username}
+        data = {"email": self.email}
         response = self.client.post(self.url, data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
