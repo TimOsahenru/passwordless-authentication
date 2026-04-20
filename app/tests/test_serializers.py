@@ -32,3 +32,4 @@ class LoginSerializerTests(TestCase):
         serializer = LoginSerializer(data=data)
         self.assertFalse(serializer.is_valid())
         self.assertIn("non_field_errors", serializer.errors)
+        self.assertEqual(serializer.errors["non_field_errors"][0], "Invalid credentials")
